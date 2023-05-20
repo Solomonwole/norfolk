@@ -108,6 +108,24 @@ function Header() {
               FAQs
             </a>
           </li>
+          <li>
+            {!isLogged ? (
+              <div className="btn">
+                <Link to="/login">
+                  <Btn outline>Login</Btn>
+                </Link>
+                <Link to="/sign-up">
+                  <Btn>Sign Up</Btn>
+                </Link>
+              </div>
+            ) : (
+              <div className="btn">
+                <Link to="/dashboard">
+                  <Btn>Dashboard</Btn>
+                </Link>
+              </div>
+            )}
+          </li>
         </MobileMenuContent>
       </MobileMenuContainer>
     </>
