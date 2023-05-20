@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { PageContainer } from "../../GlobalStyle";
 
 const HeroSlider = () => {
+  // eslint-disable-next-line no-unused-vars
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -20,13 +21,13 @@ const HeroSlider = () => {
     },
     {
       image: Slide2,
-      title: "Slide 2",
-      text: "Slide 2 description",
+      title: "Invest In Your Future",
+      text: "We are a bank that offers unparalleled expertise and services to help you achieve your financial and investment goals. Let us guide you towards unlocking new opportunities for financial growth.",
     },
     {
       image: Slide3,
-      title: "Slide 3",
-      text: "Slide 3 description",
+      title: "Keep Your Money Safe & Secured",
+      text: "We are a bank that offers unparalleled expertise and services to help you achieve your financial and investment goals. Let us guide you towards unlocking new opportunities for financial growth.",
     },
   ];
 
@@ -45,7 +46,7 @@ const HeroSlider = () => {
     <HeroSliderContainer>
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <Slide key={index} style={{ backgroundImage: `url(${slide.image})` }}>
+          <Slide key={index}>
             <SlideContent style={{ backgroundImage: `url(${slide.image})` }}>
               <FullContent>
                 <PageContainer>
@@ -67,7 +68,7 @@ export default HeroSlider;
 const HeroSliderContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   padding-top: 85px;
 `;
 
@@ -120,7 +121,7 @@ const SlideText = styled.p`
 const SlideButton = styled.button`
   padding: 10px 20px;
   font-size: 18px;
-  color: #151F36;
+  color: #151f36;
   border: none;
   cursor: pointer;
 
