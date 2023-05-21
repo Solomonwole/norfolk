@@ -6,7 +6,7 @@ import { PageContainer } from "../GlobalStyle";
 
 function AboutUs() {
   return (
-    <Layout>
+    <Layout id="about-us">
       <img src={LeftTop} alt="" className="leftTop" />
       <img src={RightDown} alt="" className="rightDown" />
 

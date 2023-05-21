@@ -8,8 +8,9 @@ import Slide3 from "../../assets/slide3.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { PageContainer } from "../../GlobalStyle";
+import PropTypes from "prop-types"
 
-const HeroSlider = () => {
+const HeroSlider = ({ contact }) => {
   // eslint-disable-next-line no-unused-vars
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -52,7 +53,7 @@ const HeroSlider = () => {
                 <PageContainer>
                   <SlideTitle>{slide.title}</SlideTitle>
                   <SlideText>{slide.text}</SlideText>
-                  <SlideButton>Contact Us Today</SlideButton>
+                  <SlideButton onClick={contact}>Contact Us Today</SlideButton>
                 </PageContainer>
               </FullContent>
             </SlideContent>
@@ -63,6 +64,9 @@ const HeroSlider = () => {
   );
 };
 
+HeroSlider.propTypes = {
+  contact: PropTypes.func.isRequired,
+};
 export default HeroSlider;
 
 const HeroSliderContainer = styled.div`

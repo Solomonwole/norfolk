@@ -84,12 +84,18 @@ function Header() {
       <MobileMenuContainer open={isMobileMenuOpen}>
         <MobileMenuContent>
           <li>
-            <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              to="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setMobileMenuOpen(false);
+              }}
+            >
               Home
             </Link>
           </li>
           <li>
-            <a href="/#about" onClick={() => setMobileMenuOpen(false)}>
+            <a href="/#about-us" onClick={() => setMobileMenuOpen(false)}>
               About Us
             </a>
           </li>
@@ -98,11 +104,11 @@ function Header() {
               Our Services
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="/#blog" onClick={() => setMobileMenuOpen(false)}>
               Blog
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="/#faqs" onClick={() => setMobileMenuOpen(false)}>
               FAQs

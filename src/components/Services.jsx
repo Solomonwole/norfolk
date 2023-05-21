@@ -3,10 +3,11 @@ import { PageContainer } from "../GlobalStyle";
 import Invest from "./assets/invest.png";
 import Advice from "./assets/advice.png";
 import Check from "./assets/check.png";
+import PropTypes from "prop-types"
 
-function Services() {
+function Services({ contact }) {
   return (
-    <Layout>
+    <Layout id="services">
       <PageContainer>
         <h2>Our Services</h2>
         <p className="subtext">
@@ -24,7 +25,7 @@ function Services() {
               with our clients to develop customised financial strategies that
               maximise value and achieve their business objectives.
             </p>
-            <button>Learn More</button>
+            <button onClick={contact}>Learn More</button>
           </Box>
           <Box>
             <img src={Advice} alt="" />
@@ -35,7 +36,7 @@ function Services() {
               providing expert analysis and recommendations based on our deep
               industry expertise and extensive experience.
             </p>
-            <button>Learn More</button>
+            <button onClick={contact}>Learn More</button>
           </Box>
           <Box>
             <img src={Check} alt="" />
@@ -47,13 +48,17 @@ function Services() {
               market risk, liquidity risk and operational risk using several
               risk management tools.
             </p>
-            <button>Learn More</button>
+            <button onClick={contact}>Learn More</button>
           </Box>
         </div>
       </PageContainer>
     </Layout>
   );
 }
+
+Services.propTypes = {
+  contact: PropTypes.func.isRequired,
+};
 
 export default Services;
 
@@ -86,22 +91,23 @@ const Box = styled.div`
   border-radius: 10px;
   color: #fff;
   width: 100%;
-  padding: 20px;
+  padding: 50px 20px;
 
   h4 {
-    margin: 10px 0;
+    margin: 20px 0;
   }
   p {
     font-size: 14px;
+    line-height: 30px;
   }
   button {
-    margin-top: 10px;
+    margin: 20px 0;
     background: #ffffff;
     border-radius: 8px;
     width: 155px;
     height: 44px;
     border: none;
-    color: #151F36;
+    color: #151f36;
     font-size: 15px;
   }
 `;
