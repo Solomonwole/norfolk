@@ -147,7 +147,7 @@ function Transactions() {
                 <TableCell>{transaction.date}</TableCell>
                 <TableCell>{transaction.desc}</TableCell>
                 <TableCell>{transaction.type}</TableCell>
-                <TableCell>${transaction.amount}</TableCell>
+                <TableCell>${transaction.amount.toLocaleString()}</TableCell>
                 <TableCell>
                   <StatusCell status={transaction.status}>
                     {transaction.status}
