@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { FormError } from "../../GlobalStyle";
+import { Link } from "react-router-dom";
 
 function TransferMoney({ cancel }) {
   const [loading, setLoading] = useState(false);
@@ -131,6 +132,7 @@ function TransferMoney({ cancel }) {
               </CloseIcon>
             </Content>
             <Text>Unable to complete transfer</Text>
+            <Link to="/support">Contact support</Link>
             <Btns>
               <GoBackButton type="button" onClick={cancel}>
                 Close

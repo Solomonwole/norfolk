@@ -95,7 +95,7 @@ function Contact({ cancel }) {
                 <Textarea
                   type="text"
                   name="message"
-                  placeholder="For investment at Apple"
+                  placeholder="Enter a description"
                   rows="7"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

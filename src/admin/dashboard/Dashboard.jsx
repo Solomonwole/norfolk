@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AuthHTwo } from "../../GlobalStyle";
 import AdminDashboardLayout from "../layout/AdminDashboardLayout";
 import {
-  Box,
+  // Box,
   StatusButton,
   Card,
   CardGrid,
@@ -19,7 +19,7 @@ import {
   TransactionCard,
   Welcome,
 } from "./styled";
-import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
+// import { BsGraphDownArrow, BsGraphUpArrow } from "react-icons/bs";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 // import { transactions } from "./dummydata";
@@ -28,14 +28,27 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import "chart.js/auto";
 import { Doughnut, Bar } from "react-chartjs-2";
 import { options } from "./piechartinfo";
+import { styled } from "styled-components";
+
+const StatusText = styled.span`
+  color: ${(props) => (props.status === "active" ? "#00D964" : "#ff0000")};
+  text-transform: capitalize;
+
+  display: none;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
+`;
 
 function Dashboard() {
   const name = localStorage.getItem("Name");
   const email = localStorage.getItem("Email");
+  const status = localStorage.getItem("Status");
   const [balance, setBalance] = useState("");
-  const [earned, setEarned] = useState("");
-  const [invested, setInvested] = useState("");
-  const [mode, setMode] = useState("");
+  // const [earned, setEarned] = useState("");
+  // const [invested, setInvested] = useState("");
+  // const [mode, setMode] = useState("");
   const [transactions, setTransactions] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [statusState, setStatusState] = useState(false);
@@ -52,9 +65,9 @@ function Dashboard() {
       if (docSnap.exists()) {
         const data = docSnap.data();
         setBalance(data.balance);
-        setEarned(data.earned);
-        setInvested(data.invested);
-        setMode(data.mode);
+        // setEarned(data.earned);
+        // setInvested(data.invested);
+        // setMode(data.mode);
         setTransactions(data.transactions);
         setFiltered(data.transactions);
         console.log("Transactions", data);
@@ -73,45 +86,90 @@ function Dashboard() {
     setStatusState(false);
   };
 
-  const calculatePercentage = (value, total) => {
-    if (total === 0) {
-      return 0;
-    }
-    return ((value / total) * 100).toFixed(2);
-  };
+  // const calculatePercentage = (value, total) => {
+  //   if (total === 0) {
+  //     return 0;
+  //   }
+  //   return ((value / total) * 100).toFixed(2);
+  // };
 
-  const totalTransactions = transactions.length;
-  const creditTransactions = transactions.filter(
-    (transaction) => transaction.type === "credit"
+  // const totalTransactions = transactions.length;
+  // const creditTransactions = transactions.filter(
+  //   (transaction) => transaction.type === "credit"
+  // ).length;
+  // const debitTransactions = transactions.filter(
+  //   (transaction) => transaction.type === "debit"
+  // ).length;
+  const pendingTransactions = transactions.filter(
+    (transaction) => transaction.status === "pending"
   ).length;
-  const debitTransactions = transactions.filter(
-    (transaction) => transaction.type === "debit"
+  const successTransactions = transactions.filter(
+    (transaction) => transaction.status === "successful"
+  ).length;
+  const failedTransactions = transactions.filter(
+    (transaction) => transaction.status === "failed"
   ).length;
 
   const doughnutChartData = {
-    labels: ["Credit", "Debit"],
+    labels: ["Successful", "Failed", "Pending"],
     datasets: [
       {
-        data: [creditTransactions, debitTransactions],
-        backgroundColor: ["#2CBB76", "#FF4408"],
-        borderColor: ["#2CBB76", "#FF4408"],
+        data: [successTransactions, failedTransactions, pendingTransactions],
+        // data: [creditTransactions, debitTransactions, pendingTransactions],
+        backgroundColor: ["#2CBB76", "#FF4408", "#FFD361"],
+        borderColor: ["#2CBB76", "#FF4408", "#FFD361"],
         borderWidth: 4,
-        hoverBorderColor: ["#2CBB76", "#FF4408"],
+        hoverBorderColor: ["#2CBB76", "#FF4408", "#FFD361"],
         hoverBorderWidth: 6,
         cutout: "70%",
       },
     ],
   };
+  const bardata = {
+    labels: ["Successful", "", "", "Failed", "", "", "Pending"],
+    datasets: [
+      {
+        label: "",
+        data: [
+          successTransactions,
+          "",
+          "",
+          failedTransactions,
+          "",
+          "",
+          pendingTransactions,
+          successTransactions,
+        ],
+        // data: [66, 40, 52, 50, 22, 70, 36],
+        backgroundColor: ["#2BBB76", "", "", "#FF4407", "", "", "#FFD361"],
+        borderRadius: 50,
+      },
+      // {
+      //   label: "Failed",
+      //   // data: debitTransactions,
+      //   data: [failedTransactions, failedTransactions, failedTransactions, failedTransactions],
+      //   backgroundColor: "#FF4407",
+      //   borderRadius: 50,
+      // },
+      // {
+      //   label: "Pending",
+      //   // data: pendingTransactions,
+      //   data: [pendingTransactions, pendingTransactions, pendingTransactions, pendingTransactions],
+      //   backgroundColor: "#FFD361",
+      //   borderRadius: 50,
+      // },
+    ],
+  };
 
-  const transactionLabels = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  // const transactionLabels = [
+  //   "Sunday",
+  //   "Monday",
+  //   "Tuesday",
+  //   "Wednesday",
+  //   "Thursday",
+  //   "Friday",
+  //   "Saturday",
+  // ];
 
   //   const resolvedTransactions = transactionLabels.map((day) =>
   //   transactions.filter(
@@ -124,25 +182,26 @@ function Dashboard() {
   //     (transaction) => transaction.filterType === day && transaction.amount
   //   ).length
   // );
-  const bardata = {
-    labels: transactionLabels,
-    datasets: [
-      {
-        label: "Successful",
-        // data: resolvedTransactions,
-        data: [66, 40, 52, 50, 22, 70, 36],
-        backgroundColor: "#908DFF",
-        borderRadius: 50,
-      },
-      {
-        label: "Pending",
-        // data: pendingTransactions,
-        data: [66, 40, 52, 50, 22, 70, 36],
-        backgroundColor: "#FFD361",
-        borderRadius: 50,
-      },
-    ],
-  };
+
+  // const bardata = {
+  //   labels: transactionLabels,
+  //   datasets: [
+  //     {
+  //       label: "Successful",
+  //       // data: resolvedTransactions,
+  //       data: [66, 40, 52, 50, 22, 70, 36],
+  //       backgroundColor: "#908DFF",
+  //       borderRadius: 50,
+  //     },
+  //     {
+  //       label: "Pending",
+  //       // data: pendingTransactions,
+  //       data: [66, 40, 52, 50, 22, 70, 36],
+  //       backgroundColor: "#FFD361",
+  //       borderRadius: 50,
+  //     },
+  //   ],
+  // };
   const optionss = {
     responsive: true,
     maintainAspectRatio: false,
@@ -155,14 +214,14 @@ function Dashboard() {
       y: {
         ticks: {
           min: 0,
-          max: 100,
-          stepSize: 20,
-          font: { size: 12 },
+          max: 80,
+          stepSize: 10,
+          font: { size: 10 },
         },
         grid: {
-          tickBorderDash: [100, 20],
+          tickBorderDash: [80, 10],
           color: "#F5F5F5",
-          tickLength: 10,
+          tickLength: 0,
           tickColor: "white",
         },
       },
@@ -179,18 +238,22 @@ function Dashboard() {
   return (
     <AdminDashboardLayout>
       <Welcome>
-        <AuthHTwo>Dashboard</AuthHTwo>
-        <p>Welcome {name}</p>
+        <div className="div">
+          <AuthHTwo>Dashboard</AuthHTwo>
+          <p>Welcome {name}</p>
+        </div>
+        <div>
+          <StatusText status={status}>{status}</StatusText>
+        </div>
       </Welcome>
       <Grid>
-        <Box value="2.3">
+        {/* <Box value="2.3">
           <p className="title">Total Balance</p>
           <h2>${balance}</h2>
           <p>
             <span>
               <BsGraphUpArrow /> &nbsp;2.3%
             </span>
-            this week
           </p>
         </Box>
         <Box value="2.5">
@@ -210,24 +273,27 @@ function Dashboard() {
             <span>
               <BsGraphUpArrow /> &nbsp;3.5%
             </span>
-            this week
           </p>
         </Box>
         <Box value="1.5">
           <p className="title">Total Transactions Made</p>
-          <h2>{mode}</h2>
+          <h2>${mode}</h2>
           <p>
             <span>
               <BsGraphDownArrow /> &nbsp;1.5%
             </span>
-            this week
           </p>
-        </Box>
+        </Box> */}
       </Grid>
 
       <CardGrid>
         <Card>
-          <Bar data={bardata} options={optionss} />
+          <p className="title">Total Balance</p>
+          <h2>${balance.toLocaleString()}</h2>
+          <br />
+          <div className="chart">
+            <Bar data={bardata} options={optionss} />
+          </div>
         </Card>
 
         <SmallCard>
@@ -240,16 +306,23 @@ function Dashboard() {
             <div className="type">
               <div className="green"></div>
               <span>
-                {calculatePercentage(creditTransactions, totalTransactions)}%
-                Credit
+                {/* {calculatePercentage(creditTransactions, totalTransactions)}% */}
+                Successful
+              </span>
+            </div>
+            <div className="type">
+              <div className="red"></div>
+              <span>
+                {/* {calculatePercentage(creditTransactions, totalTransactions)}% */}
+                Failed
               </span>
             </div>
 
             <div className="type">
-              <div className="red"></div>
+              <div className="pending"></div>
               <span>
-                {calculatePercentage(debitTransactions, totalTransactions)}%
-                Debit
+                {/* {calculatePercentage(debitTransactions, totalTransactions)}% */}
+                Pending
               </span>
             </div>
           </div>

@@ -115,7 +115,7 @@ function Support() {
               <IoMailUnread className="icon" />
               &nbsp; info@supportnorfolkig.com
             </a>
-            <a href="tel:+5071234567" target="_blank" rel="noopener noreferrer">
+            <a href="#">
               <BsFillPhoneFill className="icon" /> &nbsp;+507 123-4567
             </a>
           </div>

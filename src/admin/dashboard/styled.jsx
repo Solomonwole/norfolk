@@ -1,6 +1,9 @@
 import { css, styled } from "styled-components";
 
 export const Welcome = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   p {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: #0f172a;
@@ -78,9 +81,27 @@ export const CardGrid = styled.div`
 export const Card = styled.div`
   width: 734px;
   height: 493px;
+  /* height: 1050px; */
   background: #ffffff;
   border-radius: 10px;
   padding: 20px;
+
+  .chart {
+    width: 484px;
+    height: 380px;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  h2 {
+    /* color: #6e47ff; */
+  }
   @media (max-width: 884px) {
     width: 100%;
   }
@@ -103,12 +124,12 @@ export const SmallCard = styled.div`
     width: 100%;
     margin-top: 20px;
 
-    .type{
+    .type {
       display: flex;
       align-items: center;
 
-      span{
-        color: #0F172A;
+      span {
+        color: #0f172a;
         opacity: 0.7;
       }
     }
@@ -121,7 +142,14 @@ export const SmallCard = styled.div`
       margin-right: 10px;
     }
     .red {
-      background: #FF4408;
+      background: #ff4408;
+      border-radius: 5px;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
+    .pending {
+      background: #ffd361;
       border-radius: 5px;
       width: 15px;
       height: 15px;

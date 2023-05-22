@@ -38,6 +38,7 @@ function SignUp() {
             balance: 0,
             account: "",
             acctno: "",
+            routing: 0,
             bank: "",
             earned: 0,
             invested: 0,

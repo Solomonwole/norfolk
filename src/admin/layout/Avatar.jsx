@@ -34,10 +34,7 @@ const Flex = styled.div`
   }
 `;
 
-const StatusText = styled.p`
-  color: ${(props) => (props.status === "active" ? "#00D964" : "#ff0000")};
-  text-transform: capitalize;
-`;
+
 
 const AvatarWrapper = styled.div`
   width: 50px;
@@ -51,6 +48,11 @@ const AvatarWrapper = styled.div`
   font-size: 120%;
   font-weight: bold;
   color: #fff;
+`;
+
+const StatusText = styled.p`
+  color: ${(props) => (props.status === "active" ? "#00D964" : "#ff0000")};
+  text-transform: capitalize;
 `;
 
 const Avatar = ({ name, status, onClick }) => {
