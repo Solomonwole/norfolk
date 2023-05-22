@@ -143,40 +143,6 @@ function Dashboard() {
       },
     ],
   };
-  // const optionss = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   plugins: {
-  //     legend: {
-  //       display: false,
-  //     },
-  //   },
-  //   scales: {
-  //     y: {
-  //       ticks: {
-  //         min: 0,
-  //         max: 100,
-  //         stepSize: 20,
-  //         font: { size: 12 },
-  //       },
-  //       grid: {
-  //         tickBorderDash: [100, 20],
-  //         color: "#F5F5F5",
-  //         tickLength: 10,
-  //         tickColor: "white",
-  //       },
-  //     },
-  //     x: {
-  //       grid: {
-  //         display: false,
-  //       },
-  //       ticks: {
-  //         font: { size: 11 },
-  //       },
-  //     },
-  //   },
-  //   cornerRadius: 50, // Set the bar chart border radius to 50%
-  // };
   const optionss = {
     responsive: true,
     maintainAspectRatio: false,
@@ -333,21 +299,32 @@ function Dashboard() {
               <TableHeaderCell>Status</TableHeaderCell>
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            {filtered.slice(0, 10).map((transaction) => (
-              <TableRow key={transaction.id}>
-                <TableCell>{transaction.id}</TableCell>
-                <TableCell>{transaction.date}</TableCell>
-                <TableCell>{transaction.desc}</TableCell>
-                <TableCell>{transaction.type}</TableCell>
-                <TableCell>${transaction.amount.toLocaleString()}</TableCell>
-                <TableCell>
-                  <StatusCell status={transaction.status}>
-                    {transaction.status}
-                  </StatusCell>
-                </TableCell>
+            {transactions.length > 0 ? (
+              <>
+                {filtered.slice(0, 10).map((transaction) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell>{transaction.id}</TableCell>
+                    <TableCell>{transaction.date}</TableCell>
+                    <TableCell>{transaction.desc}</TableCell>
+                    <TableCell>{transaction.type}</TableCell>
+                    <TableCell>
+                      ${transaction.amount.toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      <StatusCell status={transaction.status}>
+                        {transaction.status}
+                      </StatusCell>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            ) : (
+              <TableRow>
+                <TableCell>No transactions!</TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TransactionCard>

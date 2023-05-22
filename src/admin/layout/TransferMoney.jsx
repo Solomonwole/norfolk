@@ -4,27 +4,11 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { FormError } from "../../GlobalStyle";
 
-const banks = [
-  { value: "Banco Nacional de Panamá", label: "Banco Nacional de Panamá" },
-  { value: "Banco General", label: "Banco General" },
-  {
-    value: "Banco Latinoamericano de Comercio Exterior (Bladex)",
-    label: "Banco Latinoamericano de Comercio Exterior (Bladex)",
-  },
-  { value: "Banco Panamá", label: "Banco Panamá" },
-  { value: "Banco Aliado", label: "Banco Aliado" },
-  { value: "Banistmo", label: "Banistmo" },
-  { value: "Banco Davivienda Panamá", label: "Banco Davivienda Panamá" },
-  { value: "Banco Continental", label: "Banco Continental" },
-  { value: "Banco Agrícola Comercial", label: "Banco Agrícola Comercial" },
-  { value: "Banco Cathay", label: "Banco Cathay" },
-  { value: "Banco General Costa Rica", label: "Banco General Costa Rica" },
-];
-
 function TransferMoney({ cancel }) {
   const [loading, setLoading] = useState(false);
   const [acctName, setAcctName] = useState("");
   const [acctNo, setAcctNo] = useState("");
+  const [routing, setRouting] = useState("");
   const [swift, setSwift] = useState("");
   const [desc, setDesc] = useState("");
   const [bank, setBank] = useState("");
@@ -55,27 +39,19 @@ function TransferMoney({ cancel }) {
                 <AiOutlineClose />
               </CloseIcon>
             </Content>
-
+            <br />
             <FormContainer>
               <form onSubmit={handleForm}>
                 <Label>Choose Bank</Label>
-                <Select
+                <Input
                   type="text"
+                  placeholder="Bank name"
                   name="bank"
                   value={bank}
                   onChange={(e) => setBank(e.target.value)}
                   disabled={loading}
                   required
-                >
-                  <Option disabled defaultValue="Select bank">
-                    Select bank
-                  </Option>
-                  {banks.map((bank) => (
-                    <Option key={bank.value} value={bank.value}>
-                      {bank.label}
-                    </Option>
-                  ))}
-                </Select>
+                />
 
                 <Label>Account Name</Label>
                 <Input
@@ -102,6 +78,16 @@ function TransferMoney({ cancel }) {
                     <span>Invalid account number</span>
                   </FormError>
                 )}
+                <Label>Wire Routing</Label>
+                <Input
+                  type="number"
+                  name="routing"
+                  placeholder="123456789"
+                  value={routing}
+                  onChange={(e) => setRouting(e.target.value)}
+                  disabled={loading}
+                  required
+                />
                 <Label>Swift Code</Label>
                 <Input
                   type="text"
@@ -116,7 +102,7 @@ function TransferMoney({ cancel }) {
                 <Textarea
                   type="text"
                   name="swift"
-                  placeholder="For investment at Apple"
+                  placeholder="Enter a description"
                   rows="7"
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
@@ -184,7 +170,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  img{
+  img {
     width: 80px;
   }
 
@@ -300,27 +286,4 @@ const LogoutButton = styled(Button)`
 `;
 
 // Drop Down
-const Select = styled.select`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #475569;
-  border-radius: 8px;
-  height: 50px;
 
-  &::placeholder {
-    color: #9e9ea7;
-  }
-
-  &:focus,
-  &:hover {
-    outline: none;
-    border: 1px solid #475569;
-  }
-`;
-
-const Option = styled.option`
-  &::placeholder {
-    color: #9e9ea7;
-  }
-`;

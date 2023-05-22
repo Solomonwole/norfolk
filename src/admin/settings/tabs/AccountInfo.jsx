@@ -37,6 +37,7 @@ function AccountInfo() {
           </form>
         </FormContainer>{" "}
       </Box>
+      
       <Box>
       <AvatarWrapper>{initials}</AvatarWrapper>
       </Box>

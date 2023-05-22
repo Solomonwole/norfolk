@@ -29,6 +29,7 @@ export const Welcome = styled.div`
         margin: 5px 0;
         background: transparent;
         color: #fff;
+        cursor: pointer;
       }
     }
   }

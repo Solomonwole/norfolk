@@ -33,12 +33,18 @@ function Header() {
 
             <NavMenu>
               <li>
-                <NavLink to="/" onClick={() => setMobileMenuOpen(false)}>
-                  Home
-                </NavLink>
+                 <NavLink
+              to="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setMobileMenuOpen(false);
+              }}
+            >
+              Home
+            </NavLink>
               </li>
               <li>
-                <a href="/#about" onClick={() => setMobileMenuOpen(false)}>
+                <a href="/#about-us" onClick={() => setMobileMenuOpen(false)}>
                   About Us
                 </a>
               </li>
@@ -47,11 +53,7 @@ function Header() {
                   Our Services
                 </a>
               </li>
-              <li>
-                <a href="/#blog" onClick={() => setMobileMenuOpen(false)}>
-                  Blog
-                </a>
-              </li>
+
               <li>
                 <a href="/#faqs" onClick={() => setMobileMenuOpen(false)}>
                   FAQs

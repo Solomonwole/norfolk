@@ -7,6 +7,7 @@ import Transactions from "../admin/transaction/Transactions";
 import Support from "../admin/support/Support";
 import Settings from "../admin/settings/Settings";
 import ForgotScreen from "../auth/forgot/ForgotScreen";
+import SignUp from "../auth/signup/SignUp";
 
 
 function RouterPage() {
@@ -14,6 +15,7 @@ function RouterPage() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forgot" element={<ForgotScreen />} />
 
         <Route path="/" element={<Home />} />

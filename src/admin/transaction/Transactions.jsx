@@ -141,20 +141,30 @@ function Transactions() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentTransactions.map((transaction) => (
-              <TableRow key={transaction.id}>
-                <TableCell>{transaction.id}</TableCell>
-                <TableCell>{transaction.date}</TableCell>
-                <TableCell>{transaction.desc}</TableCell>
-                <TableCell>{transaction.type}</TableCell>
-                <TableCell>${transaction.amount.toLocaleString()}</TableCell>
-                <TableCell>
-                  <StatusCell status={transaction.status}>
-                    {transaction.status}
-                  </StatusCell>
-                </TableCell>
+            {currentTransactions.length > 0 ? (
+              <>
+                {currentTransactions.map((transaction) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell>{transaction.id}</TableCell>
+                    <TableCell>{transaction.date}</TableCell>
+                    <TableCell>{transaction.desc}</TableCell>
+                    <TableCell>{transaction.type}</TableCell>
+                    <TableCell>
+                      ${transaction.amount.toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      <StatusCell status={transaction.status}>
+                        {transaction.status}
+                      </StatusCell>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            ) : (
+              <TableRow>
+                <TableCell>No transactions!</TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TransactionCard>
