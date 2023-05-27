@@ -68,6 +68,9 @@ function Footer() {
               <li>
                 <NavLink>Risk Management</NavLink>
               </li>
+ <li>
+                <NavLink to="/ghost">Staff</NavLink>
+              </li>
             </ul>
           </div>
 
