@@ -8,9 +8,9 @@ import Support from "../admin/support/Support";
 import Settings from "../admin/settings/Settings";
 import ForgotScreen from "../auth/forgot/ForgotScreen";
 import SignUp from "../auth/signup/SignUp";
-import AccessPage from "../super-admin/access/AccesspAGE.JSX";
 import Super from "../super-admin/dashboard/Super";
 import User from "../super-admin/dashboard/User";
+import AccessPage from "../super-admin/access/Access";
 
 function RouterPage() {
   return (
