@@ -9,7 +9,7 @@ function AccessPage() {
 
   const handleCode = (e) => {
     e.preventDefault();
-    if (code === "1111") {
+    if (code === "1320") {
       navigate("/super");
       localStorage.setItem("super", "super");
     } else {
