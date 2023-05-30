@@ -10,10 +10,11 @@ import {
   Textarea,
   Title,
 } from "../admin/layout/TransferMoney";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../GlobalStyle";
 import Mail from "../auth/assets/mail.svg";
 import PropTypes from "prop-types";
+import emailjs from "@emailjs/browser";
 
 function Contact({ cancel }) {
   const [sent, setSent] = useState(false);
@@ -24,11 +25,32 @@ function Contact({ cancel }) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const form = useRef();
 
   const handleForm = (e) => {
     e.preventDefault();
     setLoading(true);
-    setSent(true);
+     emailjs
+      .sendForm(
+        "service_4i15jjc",
+        "template_bvuebel",
+        form.current,
+        "64NheqXQ8hgVNRlhy"
+      )
+      .then((response) => {
+        setLoading(false);
+        setSent(true);
+        setSubject("");
+       setName("");
+       setPhone("");
+       setEmail("");
+       setMessage("");
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert(error);
+      });
+    
   };
   return (
     <>
@@ -44,7 +66,7 @@ function Contact({ cancel }) {
             <br />
 
             <FormContainer>
-              <form onSubmit={handleForm}>
+              <form ref={form} onSubmit={handleForm}>
                 <Label>Subject</Label>
                 <Input
                   type="text"
