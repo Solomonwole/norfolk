@@ -87,7 +87,7 @@ function TransferMoney({ cancel }) {
                   value={routing}
                   onChange={(e) => setRouting(e.target.value)}
                   disabled={loading}
-                  required
+                  
                 />
                 <Label>Swift Code</Label>
                 <Input
@@ -97,7 +97,7 @@ function TransferMoney({ cancel }) {
                   value={swift}
                   onChange={(e) => setSwift(e.target.value)}
                   disabled={loading}
-                  required
+                  
                 />
                 <Label>Description</Label>
                 <Textarea
