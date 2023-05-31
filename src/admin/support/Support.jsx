@@ -26,16 +26,26 @@ function Support() {
     e.preventDefault();
     setloading(true);
 
-    try {
-      await emailjs.sendForm(
+      emailjs
+      .sendForm(
         "service_4i15jjc",
         "template_bvuebel",
         form.current,
         "64NheqXQ8hgVNRlhy"
-      );
-    } catch (error) {
-      console.log(error);
-    }
+      )
+      .then((response) => {
+        setLoading(false);
+        setSent(true);
+        setSubject("");
+       setName("");
+       setPhone("");
+       setEmail("");
+       setMessage("");
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert(error);
+      });
   };
   return (
     <AdminDashboardLayout>
@@ -60,7 +70,7 @@ function Support() {
               <Label>Full Name</Label>
               <Input
                 type="text"
-                name="fname"
+                name="name"
                 placeholder="johndoe@example.com"
                 value={fname}
                 onChange={(e) => setFname(e.target.value)}
@@ -90,7 +100,7 @@ function Support() {
               <Label>Description</Label>
               <Textarea
                 type="text"
-                name="desc"
+                name="message"
                 placeholder="johndoe@example.com"
                 rows="5"
                 value={message}
