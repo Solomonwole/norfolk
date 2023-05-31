@@ -35,7 +35,7 @@ function Support() {
         "64NheqXQ8hgVNRlhy"
       )
       .then((response) => {
-        setLoading(false);
+        setloading(false);
         toast.success("Message Sent Successfully");
         setSubject("");
        setFname("");
@@ -44,7 +44,7 @@ function Support() {
        setMessage("");
       })
       .catch((error) => {
-        setLoading(false);
+        setloading(false);
         alert(error.message);
       });
   };
