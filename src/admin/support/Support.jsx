@@ -9,6 +9,7 @@ import { BsFillPhoneFill, BsInstagram } from "react-icons/bs";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 function Support() {
   const [loading, setloading] = useState(false);
@@ -35,16 +36,16 @@ function Support() {
       )
       .then((response) => {
         setLoading(false);
-        setSent(true);
+        toast.success("Message Sent Successfully");
         setSubject("");
-       setName("");
+       setFname("");
        setPhone("");
        setEmail("");
        setMessage("");
       })
       .catch((error) => {
         setLoading(false);
-        alert(error);
+        alert(error.message);
       });
   };
   return (
