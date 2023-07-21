@@ -21,7 +21,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import Norfolk from "../../assets/logo.svg";
-import { GoSettings } from "react-icons/go";
+import { FiSettings } from "react-icons/fi";
 import { BsHeadset } from "react-icons/bs";
 import { MdSpaceDashboard } from "react-icons/md";
 import { BiLogInCircle } from "react-icons/bi";
@@ -83,7 +83,7 @@ function AdminDashboardLayout({ children }) {
         <Modal open={isModalOpen}>
           <MenuItem onClick={handleMenuItemClick}>
             <NavLink to="/settings">
-              <GoSettings className="icon" /> Settings
+              <FiSettings className="icon" /> Settings
             </NavLink>
           </MenuItem>
 
