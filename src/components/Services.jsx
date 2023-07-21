@@ -18,9 +18,9 @@ function Services({ contact }) {
         <div className="grid">
           <Box>
             <img src={Invest} alt="" />
-            <h4>Investment Banking</h4>
+            <h4>Banking</h4>
             <p>
-              Our investment banking services include mergers and acquisitions,
+              Our banking services include mergers and acquisitions,
               capital raising, and corporate finance advisory. We work closely
               with our clients to develop customised financial strategies that
               maximise value and achieve their business objectives.
