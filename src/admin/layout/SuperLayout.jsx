@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import Norfolk from "../../assets/logo.svg";
-import { GoSettings } from "react-icons/go";
+import { FiSettings } from "react-icons/fi";
 import { MdSpaceDashboard } from "react-icons/md";
 import { BiLogInCircle } from "react-icons/bi";
 import Avatar from "./Avatar";
@@ -64,7 +64,7 @@ function SuperLayout({ children }) {
         <Modal open={isModalOpen}>
           <MenuItem onClick={handleMenuItemClick}>
             <NavLink to="/settings">
-              <GoSettings className="icon" /> Settings
+              <FiSettings className="icon" /> Settings
             </NavLink>
           </MenuItem>
 
