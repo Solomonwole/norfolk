@@ -5,7 +5,7 @@ import AdminDashboardLayout from "../layout/AdminDashboardLayout";
 import { Box, Grid } from "./styled";
 import { FormContainer, Input, Label, Textarea } from "../layout/TransferMoney";
 import { IoMailUnread } from "react-icons/io5";
-import { BsFillPhoneFill, BsInstagram } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
@@ -27,7 +27,7 @@ function Support() {
     e.preventDefault();
     setloading(true);
 
-      emailjs
+    emailjs
       .sendForm(
         "service_4i15jjc",
         "template_bvuebel",
@@ -38,10 +38,11 @@ function Support() {
         setloading(false);
         toast.success("Message Sent Successfully");
         setSubject("");
-       setFname("");
-       setPhone("");
-       setEmail("");
-       setMessage("");
+        setFname("");
+        setPhone("");
+        setEmail("");
+        setMessage("");
+        console.log(response);
       })
       .catch((error) => {
         setloading(false);
@@ -125,9 +126,6 @@ function Support() {
             >
               <IoMailUnread className="icon" />
               &nbsp; info@supportnorfolkig.com
-            </a>
-            <a href="#">
-              <BsFillPhoneFill className="icon" /> &nbsp;+507 123-4567
             </a>
           </div>
           <div className="socials">

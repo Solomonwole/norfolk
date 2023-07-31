@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { PageContainer } from "../../GlobalStyle";
 import Logo from "../../assets/logowhite.svg";
-import { BsFillPhoneFill, BsInstagram } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -68,7 +68,7 @@ function Footer() {
               <li>
                 <NavLink>Risk Management</NavLink>
               </li>
- <li>
+              <li>
                 <NavLink to="/ghost">Staff</NavLink>
               </li>
             </ul>
@@ -82,12 +82,7 @@ function Footer() {
                   <IoMdMailUnread className="icon" /> info@supportnorfolkig.com
                 </a>
               </li>
-              <li>
-                <a href="tel:5071234567">
-                  <BsFillPhoneFill className="icon" />
-                  +507 123-4567
-                </a>
-              </li>
+
               <li>
                 <HiLocationMarker className="loc" />
                 Boulevard Costa del Este, PH Financial Park Tower, Piso 17,
